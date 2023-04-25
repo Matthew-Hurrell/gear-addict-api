@@ -3,5 +3,6 @@ from rigs import views
 
 
 urlpatterns = [
-    path('rigs/', views.RigList.as_view()), 
+    path('rigs/', views.RigList.as_view()),
+    path('rigs/<int:pk>/', views.RigDetail.as_view())
 ]
