@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'rigs',
     'gear',
     'comments',
+    'likes',
 ]
 
 MIDDLEWARE = [
