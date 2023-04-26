@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'profiles',
     'rigs',
     'gear',
+    'comments',
 ]
 
 MIDDLEWARE = [
