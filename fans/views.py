@@ -16,14 +16,14 @@ class FanList(generics.ListCreateAPIView):
     queryset = Fan.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(fan=self.request.user)
 
 
 class FanDetail(generics.RetrieveDestroyAPIView):
     """
     Retrieve a fan
     No Update view, as we either become a fan or unfan users
-    Destroy a fan, i.e. unfan someone if owner
+    Destroy a fan, i.e. unfan someone if fan
     """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = FanSerializer
