@@ -1,80 +1,26 @@
-from django.http import Http404
-from rest_framework import status, permissions
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics, permissions
+from gear_addict_api.permissions import IsOwnerOrReadOnly
 from .models import Rig
 from .serializers import RigSerializer
-from gear_addict_api.permissions import IsOwnerOrReadOnly
 
 
-class RigList(APIView):
+class RigList(generics.ListCreateAPIView):
+    """
+    List rigs or create a rig if logged in
+    The perform_create method associates the rig with the logged in user.
+    """
     serializer_class = RigSerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = Rig.objects.all()
 
-    def get(self, request):
-        rigs = Rig.objects.all()
-        serializer = RigSerializer(
-        rigs, many = True, context = {'request': request}
-        )
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = RigSerializer(
-            data=request.data,
-            context ={'request':request} 
-        )
-        if serializer.is_valid():
-            serializer.save(owner=request.user)
-            return Response(
-                serializer.data,
-                status=status.HTTP_201_CREATED
-            )
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST
-        )
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
-class RigDetail(APIView):
+class RigDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve a rig and edit or delete it if you own it.
+    """
     serializer_class = RigSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    
-    def get_object(self, pk):
-        try: 
-            rig = Rig.objects.get(pk=pk) 
-            self.check_object_permissions(self.request, rig)
-            return rig
-        except Rig.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        rig = self.get_object(pk) 
-        serializer=RigSerializer(
-            rig,
-            context= {'request' : request}
-        ) 
-        return Response(serializer.data)
-    
-    def put(self, request, pk):
-        rig = self.get_object(pk)
-        serializer=RigSerializer(
-            rig,
-            data=request.data,
-            context= {'request' : request}
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST
-        )
-
-    def delete(self, request, pk):
-        rig = self.get_object(pk)
-        rig.delete()
-        return Response(
-            status=status.HTTP_204_NO_CONTENT
-        )
+    queryset = Rig.objects.all()
