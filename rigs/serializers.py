@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Rig
+from likes.models import Like
+from save.models import Save
 
 
 class RigSerializer(serializers.ModelSerializer):
@@ -7,6 +9,8 @@ class RigSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
+    like_id = serializers.SerializerMethodField()
+    save_id = serializers.SerializerMethodField()
 
     def validate_image(self, value):
         if value.size > 1024 * 1024 * 2:
@@ -27,6 +31,25 @@ class RigSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
+    def get_like_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            like = Like.objects.filter(
+                owner=user, rig=obj
+            ).first()
+            return like.id if like else None
+        return None
+
+    def get_save_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            save = Save.objects.filter(
+                owner=user, rig=obj
+            ).first()
+            return save.id if save else None
+        return None
+
+
     class Meta:
         model = Rig
         fields = [
@@ -34,5 +57,6 @@ class RigSerializer(serializers.ModelSerializer):
             'profile_image', 'created_at', 'updated_at',
             'name', 'category', 'description', 'gear_list',
             'featured_image', 'image_2', 'image_3', 'image_4',
-            'attributes', 'budget', 'genre', 'featured'
+            'attributes', 'budget', 'genre', 'featured', 'like_id',
+            'save_id'
         ]
