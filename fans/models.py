@@ -11,12 +11,12 @@ class Fan(models.Model):
     """
     fan = models.ForeignKey(
         User,
-        related_name='fan',
+        related_name='fanboy',
         on_delete=models.CASCADE
     )
     idol = models.ForeignKey(
         User,
-        related_name='idol',
+        related_name='idolguy',
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
