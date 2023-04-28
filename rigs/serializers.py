@@ -11,6 +11,9 @@ class RigSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     like_id = serializers.SerializerMethodField()
     save_id = serializers.SerializerMethodField()
+    comments_count = serializers.ReadOnlyField()
+    likes_count = serializers.ReadOnlyField()
+    saves_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         if value.size > 1024 * 1024 * 2:
@@ -58,5 +61,5 @@ class RigSerializer(serializers.ModelSerializer):
             'name', 'category', 'description', 'gear_list',
             'featured_image', 'image_2', 'image_3', 'image_4',
             'attributes', 'budget', 'genre', 'featured', 'like_id',
-            'save_id'
+            'save_id', 'comments_count', 'likes_count', 'saves_count',
         ]
