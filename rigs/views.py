@@ -1,4 +1,5 @@
-from rest_framework import generics, permissions
+from django.db.models import Count
+from rest_framework import generics, permissions, filters
 from gear_addict_api.permissions import IsOwnerOrReadOnly
 from .models import Rig
 from .serializers import RigSerializer
@@ -11,7 +12,20 @@ class RigList(generics.ListCreateAPIView):
     """
     serializer_class = RigSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Rig.objects.all()
+    queryset = Rig.objects.annotate(
+        comments_count = Count('comment', distinct=True),
+        likes_count = Count('likes', distinct=True),
+        saves_count = Count('save', distinct=True),
+    ).order_by('-created_at')
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'comments_count',
+        'likes_count',
+        'saves_count',
+        'likes__created_at',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -23,4 +37,8 @@ class RigDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = RigSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Rig.objects.all()
+    queryset = Rig.objects.annotate(
+        comments_count = Count('comment', distinct=True),
+        likes_count = Count('likes', distinct=True),
+        saves_count = Count('save', distinct=True),
+    ).order_by('-created_at')
