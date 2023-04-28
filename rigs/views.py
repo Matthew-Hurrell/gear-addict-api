@@ -18,7 +18,14 @@ class RigList(generics.ListCreateAPIView):
         saves_count = Count('save', distinct=True),
     ).order_by('-created_at')
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'owner__username',
+        'category',
+        'attributes',
+        'genre',
     ]
     ordering_fields = [
         'comments_count',
