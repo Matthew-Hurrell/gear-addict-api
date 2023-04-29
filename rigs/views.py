@@ -38,9 +38,13 @@ class RigList(generics.ListCreateAPIView):
         'genre',
     ]
     ordering_fields = [
+        # Most Popular
         'comments_count',
+        # Most Liked
         'likes_count',
+        # Most Saved
         'saves_count',
+        # Hottest Rigs
         'likes__created_at',
     ]
 
