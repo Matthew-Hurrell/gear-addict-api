@@ -22,8 +22,10 @@ class ProfileList(generics.ListAPIView):
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        # Profiles following a User
-        'owner__fanboy__idol__profile'
+        # All profiles that are a fan of a User
+        'owner__fanboy__idol__profile',
+        # All profiles that are idols of a User
+        'owner__idolguy__fan__profile',
     ]
     ordering_fields = [
         'rigs_count',
