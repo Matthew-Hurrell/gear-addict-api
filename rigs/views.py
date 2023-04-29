@@ -1,5 +1,6 @@
 from django.db.models import Count
 from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from gear_addict_api.permissions import IsOwnerOrReadOnly
 from .models import Rig
 from .serializers import RigSerializer
@@ -20,6 +21,15 @@ class RigList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        # User feed
+        'owner__idolguy__fan__profile',
+        # User liked rigs
+        'likes__owner__profile',
+        # User rigs
+        'owner__profile',
     ]
     search_fields = [
         'owner__username',
