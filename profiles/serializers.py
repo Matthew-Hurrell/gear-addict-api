@@ -8,6 +8,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     fan_id = serializers.SerializerMethodField()
     rigs_count = serializers.ReadOnlyField()
+    gear_count = serializers.ReadOnlyField()
     fans_count = serializers.ReadOnlyField()
     idols_count = serializers.ReadOnlyField()
 
@@ -33,4 +34,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             'location', 'instruments', 'genres',
             'expertise', 'is_owner', 'fan_id',
             'rigs_count', 'fans_count', 'idols_count',
+            'gear_count',
         ]
