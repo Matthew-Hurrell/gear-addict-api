@@ -13,10 +13,10 @@ class RigList(generics.ListCreateAPIView):
     """
     serializer_class = RigSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # queryset = Rig.objects.all()
     queryset = Rig.objects.annotate(
         comments_count = Count('comment', distinct=True),
         likes_count = Count('likes', distinct=True),
-        saves_count = Count('save', distinct=True),
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
@@ -34,8 +34,10 @@ class RigList(generics.ListCreateAPIView):
     search_fields = [
         'owner__username',
         'category',
-        'attributes',
-        'genre',
+        'attribute_1',
+        'attribute_2',
+        'genre_1',
+        'genre_2',
     ]
     ordering_fields = [
         # Most Popular
@@ -43,7 +45,7 @@ class RigList(generics.ListCreateAPIView):
         # Most Liked
         'likes_count',
         # Most Saved
-        'saves_count',
+        # 'saves_count',
         # Hottest Rigs
         'likes__created_at',
     ]
@@ -61,5 +63,5 @@ class RigDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Rig.objects.annotate(
         comments_count = Count('comment', distinct=True),
         likes_count = Count('likes', distinct=True),
-        saves_count = Count('save', distinct=True),
+        # saves_count = Count('save', distinct=True),
     ).order_by('-created_at')
