@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Rig
 from likes.models import Like
-from save.models import Save
+from stars.models import Star
 
 
 class RigSerializer(serializers.ModelSerializer):
@@ -10,10 +10,10 @@ class RigSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     like_id = serializers.SerializerMethodField()
-    save_id = serializers.SerializerMethodField()
+    star_id = serializers.SerializerMethodField()
     comments_count = serializers.ReadOnlyField()
     likes_count = serializers.ReadOnlyField()
-    saves_count = serializers.ReadOnlyField()
+    stars_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         if value.size > 1024 * 1024 * 2:
@@ -43,13 +43,13 @@ class RigSerializer(serializers.ModelSerializer):
             return like.id if like else None
         return None
 
-    def get_save_id(self, obj):
+    def get_star_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
-            save = Save.objects.filter(
+            star = Star.objects.filter(
                 owner=user, rig=obj
             ).first()
-            return save.id if save else None
+            return star.id if star else None
         return None
 
 
@@ -60,6 +60,7 @@ class RigSerializer(serializers.ModelSerializer):
             'profile_image', 'created_at', 'updated_at',
             'name', 'category', 'description', 'gear_list',
             'featured_image', 'image_2', 'image_3', 'image_4',
-            'attributes', 'budget', 'genre', 'featured', 'like_id',
-            'save_id', 'comments_count', 'likes_count', 'saves_count',
+            'attribute_1', 'attribute_2', 'budget', 'genre_1',
+            'genre_2', 'like_id', 'star_id', 'comments_count', 
+            'likes_count', 'stars_count', 'featured'
         ]
