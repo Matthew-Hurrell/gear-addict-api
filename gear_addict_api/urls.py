@@ -24,6 +24,6 @@ urlpatterns = [
     path('', include('gear.urls')),
     path('', include('comments.urls')),
     path('', include('likes.urls')),
-    path('', include('save.urls')),
+    # path('', include('save.urls')),
     path('', include('fans.urls')),
 ]
