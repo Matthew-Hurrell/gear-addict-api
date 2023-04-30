@@ -12,7 +12,7 @@ class Star(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     rig = models.ForeignKey(
         Rig,
-        related_name='star',
+        related_name='stars',
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
