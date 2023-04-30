@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'gear',
     'comments',
     'likes',
-    'save',
+    # 'save',
+    'stars',
     'fans',
 ]
 
