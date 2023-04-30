@@ -103,7 +103,12 @@ class Rig(models.Model):
     image_2 = models.ImageField(upload_to='images/', blank=True)
     image_3 = models.ImageField(upload_to='images/', blank=True)
     image_4 = models.ImageField(upload_to='images/', blank=True)
-    attributes = models.CharField(
+    attribute_1 = models.CharField(
+        max_length=255,
+        choices=attributes_choices,
+        blank=True
+    )
+    attribute_2 = models.CharField(
         max_length=255,
         choices=attributes_choices,
         blank=True
@@ -113,7 +118,12 @@ class Rig(models.Model):
         choices=budget_choices,
         blank=True
     )
-    genre = models.CharField(
+    genre_1 = models.CharField(
+        max_length=255,
+        choices=genre_choices,
+        blank=True
+    )
+    genre_2 = models.CharField(
         max_length=255,
         choices=genre_choices,
         blank=True
