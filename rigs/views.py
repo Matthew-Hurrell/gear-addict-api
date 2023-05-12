@@ -40,6 +40,7 @@ class RigList(generics.ListCreateAPIView):
         'attribute_2',
         'genre_1',
         'genre_2',
+        'name',
     ]
     ordering_fields = [
         # Most Popular
