@@ -117,7 +117,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = [
-    'https://gear-addict-react.herokuapp.com',
+    'http://gear-addict-react.herokuapp.com',
 ]
 
 ROOT_URLCONF = 'gear_addict_api.urls'
