@@ -31,8 +31,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_at', 'updated_at',
             'name', 'bio', 'image', 'header_image',
-            'location', 'instruments', 'genres',
-            'expertise', 'is_owner', 'fan_id',
+            'location', 'instrument_1', 'instrument_2',
+            'instrument_3', 'genre_1', 'genre_2',
+            'genre_3', 'expertise', 'is_owner', 'fan_id',
             'rigs_count', 'fans_count', 'idols_count',
             'gear_count',
         ]
