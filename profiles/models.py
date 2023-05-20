@@ -105,10 +105,22 @@ class Profile(models.Model):
         upload_to='images/', default='../default_header_jtvt3u', blank=True
     )
     location = models.CharField(max_length=255, blank=True)
-    instruments = models.CharField(
+    instrument_1 = models.CharField(
         max_length=255, choices=instruments_choices, blank=True
     )
-    genres = models.CharField(
+    instrument_2 = models.CharField(
+        max_length=255, choices=instruments_choices, blank=True
+    )
+    instrument_3 = models.CharField(
+        max_length=255, choices=instruments_choices, blank=True
+    )
+    genre_1 = models.CharField(
+        max_length=255, choices=genres_choices, blank=True
+    )
+    genre_2 = models.CharField(
+        max_length=255, choices=genres_choices, blank=True
+    )
+    genre_3 = models.CharField(
         max_length=255, choices=genres_choices, blank=True
     )
     expertise = models.CharField(
