@@ -118,6 +118,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = [
     'http://gear-addict-react.herokuapp.com',
+    'https://gear-addict-react.herokuapp.com',
 ]
 
 ROOT_URLCONF = 'gear_addict_api.urls'
