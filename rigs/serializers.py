@@ -5,6 +5,9 @@ from stars.models import Star
 
 
 class RigSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Rig model
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')

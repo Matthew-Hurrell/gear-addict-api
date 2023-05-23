@@ -4,6 +4,9 @@ from fans.models import Fan
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Profile model
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     fan_id = serializers.SerializerMethodField()
