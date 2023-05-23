@@ -76,7 +76,7 @@ class Gear(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(
         upload_to='images/',
-        default='../gear-placeholder_l5xkcjb',
+        default='../gear-placeholder_l5xkcj',
         blank=True
     )
     repair = models.IntegerField(choices=repair_choices, default=0)
