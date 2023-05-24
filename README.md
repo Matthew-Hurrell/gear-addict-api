@@ -76,6 +76,107 @@ All Python code within the Gear Addict application has been run through the [Cod
 
 ## Manual Tests
 
+Here you will find a comprehensive list of all the manual tests that were carried out on the Gear Addict API.
+
+| Status | **Rigs**
+|:-------:|:--------|
+| &check; | Correct list URL path
+| &check; | Correct rig URL path
+| &check; | Add rig functionality
+| &check; | Edit rig functionality
+| &check; | Delete rig functionality
+| &check; | Correct rig fields
+| &check; | Non authenticated users cannot create rigs
+| &check; | Only authenticated owners can update or delete their own rig
+| &check; | Search functionality
+| &check; | Filter functionality
+| &check; | Ordering functionality
+| &check; | Default image URLs correct
+| &check; | Pagination functioning
+| &check; | Count fields functionality working correctly
+
+| Status | **Gear**
+|:-------:|:--------|
+| &check; | Correct list URL path
+| &check; | Correct gear URL path
+| &check; | Add gear functionality
+| &check; | Edit gear functionality
+| &check; | Delete gear functionality
+| &check; | Correct gear fields
+| &check; | Non authenticated users cannot create gear
+| &check; | Only authenticated owners can update or delete their own gear
+| &check; | Search functionality
+| &check; | Filter functionality
+| &check; | Default image URL correct
+| &check; | Pagination functioning
+
+| Status | **Profiles**
+|:-------:|:--------|
+| &check; | User profile automatically created on sign up
+| &check; | Correct list URL path
+| &check; | Correct profile URL path
+| &check; | Edit profile functionality
+| &check; | Correct profile fields
+| &check; | Only authenticated owners can update their own profile
+| &check; | Filter functionality
+| &check; | Ordering functionality
+| &check; | Default image URLs correct
+| &check; | Pagination functioning
+| &check; | Count fields functionality working correctly
+
+| Status | **Comments**
+|:-------:|:--------|
+| &check; | Correct list URL path
+| &check; | Correct comment URL path
+| &check; | Add comment functionality
+| &check; | Edit comment functionality
+| &check; | Delete comment functionality
+| &check; | Correct comment fields
+| &check; | Non authenticated users cannot create comments
+| &check; | Only authenticated owners can update their own comment
+| &check; | Filter functionality
+| &check; | Pagination functioning
+| &check; | Correct rig id 
+
+| Status | **Fans**
+|:-------:|:--------|
+| &check; | Correct list URL path
+| &check; | Correct fan URL path
+| &check; | Add fan functionality
+| &check; | Delete fan functionality
+| &check; | Correct fan fields
+| &check; | Non authenticated users cannot create a fan
+| &check; | Only authenticated owners can delete their own fan
+| &check; | Pagination functioning
+| &check; | Correct fan name
+| &check; | Correct idol id 
+
+| Status | **Likes**
+|:-------:|:--------|
+| &check; | Correct list URL path
+| &check; | Correct like URL path
+| &check; | Add like functionality
+| &check; | Delete like functionality
+| &check; | Correct like fields
+| &check; | Non authenticated users cannot add a like
+| &check; | Only authenticated owners can delete their own like
+| &check; | Pagination functioning
+| &check; | Correct rig id 
+| &check; | Correct owner 
+
+| Status | **Stars**
+|:-------:|:--------|
+| &check; | Correct list URL path
+| &check; | Correct star URL path
+| &check; | Add star functionality
+| &check; | Delete star functionality
+| &check; | Correct star fields
+| &check; | Non authenticated users cannot add a star
+| &check; | Only authenticated owners can delete their own star
+| &check; | Pagination functioning
+| &check; | Correct rig id 
+| &check; | Correct owner 
+
 [Back to top](<#contents>)
 
 ## Automated Tests
