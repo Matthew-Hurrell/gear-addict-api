@@ -185,25 +185,65 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 
 ## Bugs
 
+* During development a bug appeared when creating a new rig. Rig creation originally worked when it was first implimented, but later in development it was discovered that the rig model was throwing a TypeError when calling the Rig.objects.create() method. After many tests and tutor guidance it was found that it was a new related model called 'Save' that was causing the error with rig creation. I was at the time unaware that having a model called Save would cause a problem. To resolve this issue I had to create a new database, remove the entire save app from the project and create a new app called Star. This new app was essentially a complete copy of the original Save app, just with a name change. This fix solved the problem and allowed the creation of rigs again.
+
+* Later in development it was discovered that the user was unable to log out fully. Clicking the log out button would update the view to remove logged in icons from the nav and would redirect the user to the home page as expected, but if the user tried to log in again by clicking the sign in page link they would be redirected away. This was because the user wasn't fully logged out and the page redirect was activating. On page refresh the user would be automatically logged back in. Although this problem was a front end issue, it required a back end solution to fix the problem. The bug was caused by dj-rest-auth not passing an attribute to the standard log out view. The bug was fixed with a custom log out view added to the API view.py file. The new log out view was then added to the API urls before the dj-rest-auth URLs to overwrite the default log out view. This solved the issue and allowed users to log out and in successfully.
+
+* When connecting the deployed front end of the application to the back end, there was an intermittent issue of the front end being rejected by the back end server due to a CORS header error. The API was declining the front end HTTP requests due to a lack of the necessary CORS headers in the response. The error was - `Access to XMLHttpRequest at 'https://gear-addict.herokuapp.com/rigs/?&ordering=likes__created_at&search=' from origin 'https://gear-addict-react.herokuapp.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.`. After reading the django cors headers documentation, it was discovered that the original CORS_ORIGIN_WHITELIST variable (which was used to provide authorised URLS to the back end) had recently been updated to CORS_ALLOWED_ORIGINS. I suspected that this was what was causing the problem, so I updated the variable name and re-deployed the project and the intermittent issue was resolved. 
+
 [Back to top](<#contents>)
 
 # Technologies Used
+
+Here you will find a complete list of all the technologies used to help create and develop the Gear Addict API.
 
 [Back to top](<#contents>)
 
 ## Languages
 
+* [Python](https://www.python.org/) - Python is a high-level, general-purpose programming language.
+
 [Back to top](<#contents>)
 
 ## Frameworks
+
+* [Django](https://www.djangoproject.com/) - Django is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern.
+* [Django REST Framework](https://www.django-rest-framework.org/) - Django REST framework is a powerful and flexible toolkit used for building Web APIs using Python.
 
 [Back to top](<#contents>)
 
 ## Software 
 
+* [Slack](https://slack.com/intl/en-gb/) - Slack is an instant messaging program designed by Slack Technologies and owned by Salesforce.
+* [Draw.io](https://app.diagrams.net/) - Draw.io is an online application used to make flowcharts and diagrams.
+* [GitHub](https://github.com/) - GitHub, Inc. is an Internet hosting service for software development and version control using Git.
+* [GitPod](https://www.gitpod.io/) - Gitpod is a cloud development environment for teams to efficiently and securely develop software.
+* [Heroku](https://dashboard.heroku.com/) - Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
 [Back to top](<#contents>)
 
 ## Libraries
+
+* [asgiref](https://pypi.org/project/asgiref/) v3.6.0 - ASGI specs, helper code, and adapters
+* [cloudinary](https://pypi.org/project/cloudinary/) v1.32.0 - Python and Django SDK for Cloudinary
+* [dj-database-url](https://pypi.org/project/dj-database-url/) v2.0.0 - Allows database URL environment variables within Django
+* [dj-rest-auth](https://pypi.org/project/dj-rest-auth/) v2.1.9 - Authentication and Registration in Django Rest Framework
+* [Django](https://pypi.org/project/Django/) v3.2.18 - A high-level Python web framework that encourages rapid development and clean, pragmatic design
+* [django-allauth](https://pypi.org/project/django-allauth/) v0.44.0 - Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
+* [django-cloudinary-storage](https://pypi.org/project/django-cloudinary-storage/) v0.3.0 - Django package that provides Cloudinary storages for both media and static files as well as management commands for removing unnecessary files
+* [django-cors-headers](https://pypi.org/project/django-cors-headers/) v3.14.0 - django-cors-headers is a Django application for handling the server headers required for Cross-Origin Resource Sharing (CORS)
+* [django-filter](https://pypi.org/project/django-filter/) v23.1 - Django-filter is a reusable Django application for allowing users to filter querysets dynamically
+* [djangorestframework](https://pypi.org/project/djangorestframework/) v3.14.0 - Django REST framework is a powerful and flexible toolkit for building Web APIs
+* [djangorestframework-simplejwt](https://pypi.org/project/djangorestframework-simplejwt/) v4.7.2 - A minimal JSON Web Token authentication plugin for Django REST Framework
+* [gunicorn](https://pypi.org/project/gunicorn/) v20.1.0 - WSGI HTTP Server for UNIX
+* [oauthlib](https://pypi.org/project/oauthlib/) v3.2.2 - A generic, spec-compliant, thorough implementation of the OAuth request-signing logic
+* [Pillow](https://pypi.org/project/Pillow/) v9.5.0 - Python Imaging Library (Fork)
+* [psycopg2](https://pypi.org/project/psycopg2/) v2.9.6 - Python-PostgreSQL Database Adapter
+* [PyJWT](https://pypi.org/project/PyJWT/) v2.6.0 - JSON Web Token implementation in Python
+* [python3-openid](https://pypi.org/project/python-openid3/) v3.2.0 - OpenID support for servers and consumers. Python 3 support fork
+* [pytz](https://pypi.org/project/pytz/) v2023.3 - World timezone definitions, modern and historical
+* [requests-oauthlib](https://pypi.org/project/requests-oauthlib/) v1.3.1 - OAuthlib authentication support for Requests
+* [sqlparse](https://pypi.org/project/sqlparse/) v0.4.4 - A non-validating SQL parser
 
 [Back to top](<#contents>)
 
