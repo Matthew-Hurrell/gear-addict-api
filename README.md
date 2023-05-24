@@ -1,12 +1,12 @@
 # **Gear Addict - API**
 
-Gear Addict is an online application that allows users to add and categorise their music gear and also share details about their live rigs with the community. Users can interact with other users by becoming a fan, as well as liking, commenting and saving rigs.
+Gear Addict is an online application that allows users to add and categorise their music gear, and also share details about their live rigs with the community. Users can interact with other users by becoming a fan, as well as liking, commenting and saving rigs.
 
-This project was built as the final portfolio submission for the [Code Institute](https://codeinstitute.net/) National Diploma in Full Stack Software Development. 
+This project was built as the final portfolio submission for the [Code Institute](https://codeinstitute.net/) Higher National Diploma in Full Stack Software Development. 
 
-The project has been split into two parts - the front end built with [React](https://react.dev/), and the back end powered by the [Django REST Framework](https://www.django-rest-framework.org/). 
+The project has been split into two parts - the front-end built with [React](https://react.dev/), and the back end powered by the [Django REST Framework](https://www.django-rest-framework.org/). 
 
-More information on the front end of the site can be found on the front end [README](https://github.com/Matthew-Hurrell/gear-addict/blob/main/README.md).
+More information on the front end of the site can be found in the front end [README](https://github.com/Matthew-Hurrell/gear-addict/blob/main/README.md).
 
 Link to the live site - [Gear Addict Live Site](https://gear-addict-react.herokuapp.com/)
 
@@ -42,7 +42,7 @@ Link to the front end repository - [Gear Addict Front End Repo](https://github.c
 
 ![Gear Addict User Story Example](static/readme-images/gear-addict-user-stories.png)
 
-In terms of project management, user stories are an integral part of the software development creative process. There is a total of sixty user stories for the Gear Addict project. Before development began, all user stories began as epics. They were then refined down into user stories, which were then again split into acceptance criteria and tasks. Each user story was then assigned a story points number in relation to its difficulty in comparison to the other user stories. Finally, each user story was given a label to display its priority. User stories were then sorted into weekly iterations and added to the Gear Addict Project Board to aid with organisation. As development progressed, user stories were closed and moved into the done column on the Gear Addict project board. Each iteration was carefully planned to not have more than 60% must-have user stories. 
+In terms of project management, user stories are an integral part of the software development creative process. There is a total of sixty user stories for the Gear Addict project. Before development began, all user stories began as epics. They were then refined into user stories, which were then again split into acceptance criteria and tasks. Each user story was then assigned a story points number in relation to its difficulty in comparison to the other user stories. Finally, each user story was given a label to display its priority. User stories were then sorted into weekly iterations and added to the Gear Addict Project Board to aid with organisation. As development progressed, user stories were closed and moved into the done column on the Gear Addict project board. Each iteration was carefully planned to not have more than 60% must-have user stories. 
 
 A full list of user stories can be found in a separate file here - [Gear Addict User Stories](https://github.com/Matthew-Hurrell/gear-addict/blob/main/readme/userstories.md)
 
@@ -56,13 +56,13 @@ The Gear Addict Project Board can be found here - [Gear Addict Project Board](ht
 
 ![Gear Addict Database Schema](static/readme-images/gear-addict-database-schema.png)
 
-The Gear Addict database was created using seven custom models. There are two different post types - Gear and Rigs. Users can also interact with the community using the Star, Like, Comment and Fan models. The enhanced profile model allows for further profile customisation to add to the user experience. 
+The Gear Addict database was created using seven custom models. There are two different post types - Gear and Rigs. Users can also interact with the community using the Star, Like, Comment and Fan models. The enhanced profile model allows for further profile customisation, to add to the user experience. 
 
 [Back to top](<#contents>)
 
 # Testing
 
-The Gear Addict application has been tested rigourously throughout the development process. This section will provide details on the tests carried out specifically on the back end API.
+The Gear Addict application has been tested rigorously throughout the development process. This section will provide details on the tests carried out specifically on the back-end API.
 
 [Back to top](<#contents>)
 
@@ -185,11 +185,11 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 
 ## Bugs
 
-* During development a bug appeared when creating a new rig. Rig creation originally worked when it was first implimented, but later in development it was discovered that the rig model was throwing a TypeError when calling the Rig.objects.create() method. After many tests and tutor guidance it was found that it was a new related model called 'Save' that was causing the error with rig creation. I was at the time unaware that having a model called Save would cause a problem. To resolve this issue I had to create a new database, remove the entire save app from the project and create a new app called Star. This new app was essentially a complete copy of the original Save app, just with a name change. This fix solved the problem and allowed the creation of rigs again.
+* During development a bug appeared when creating a new rig. Rig creation originally worked when it was first implemented, but later in development it was discovered that the rig model was throwing a TypeError when calling the Rig.objects.create() method. After many tests and tutor guidance was found that it was a new related model called 'Save' that was causing the error with rig creation. I was at the time unaware that having a model called Save would cause a problem. To resolve this issue I had to create a new database, remove the entire save app from the project and create a new app called Star. This new app was essentially a complete copy of the original Save app, just with a name change. This fix solved the problem and allowed the creation of rigs again.
 
-* Later in development it was discovered that the user was unable to log out fully. Clicking the log out button would update the view to remove logged in icons from the nav and would redirect the user to the home page as expected, but if the user tried to log in again by clicking the sign in page link they would be redirected away. This was because the user wasn't fully logged out and the page redirect was activating. On page refresh the user would be automatically logged back in. Although this problem was a front end issue, it required a back end solution to fix the problem. The bug was caused by dj-rest-auth not passing an attribute to the standard log out view. The bug was fixed with a custom log out view added to the API view.py file. The new log out view was then added to the API urls before the dj-rest-auth URLs to overwrite the default log out view. This solved the issue and allowed users to log out and in successfully.
+* Later in development it was discovered that users were unable to log-out fully. Clicking the log out button would update the view to remove logged in icons from the nav and would redirect the user to the home page as expected, but if the user tried to log in again by clicking the sign-in page link they would be redirected away. This was because the user wasn't fully logged out and the page redirect was activating. On page refresh the user would be automatically logged back in. Although this problem was a front-end issue, it required a back-end solution to fix the problem. The bug was caused by dj-rest-auth not passing an attribute to the standard log-out view. The bug was fixed with a custom log-out view added to the API view.py file. The new log-out view was then added to the API urls before the dj-rest-auth URLs to overwrite the default log-out view. This solved the issue and allowed users to log out and in successfully.
 
-* When connecting the deployed front end of the application to the back end, there was an intermittent issue of the front end being rejected by the back end server due to a CORS header error. The API was declining the front end HTTP requests due to a lack of the necessary CORS headers in the response. The error was - `Access to XMLHttpRequest at 'https://gear-addict.herokuapp.com/rigs/?&ordering=likes__created_at&search=' from origin 'https://gear-addict-react.herokuapp.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.`. After reading the django cors headers documentation, it was discovered that the original CORS_ORIGIN_WHITELIST variable (which was used to provide authorised URLS to the back end) had recently been updated to CORS_ALLOWED_ORIGINS. I suspected that this was what was causing the problem, so I updated the variable name and re-deployed the project and the intermittent issue was resolved. 
+* When connecting the deployed front end of the application to the back end, there was an intermittent issue with the front-end being rejected by the back-end server due to a CORS header error. The API was declining the front end HTTP requests due to a lack of the necessary CORS headers in the response. The error was - `Access to XMLHttpRequest at 'https://gear-addict.herokuapp.com/rigs/?&ordering=likes__created_at&search=' from origin 'https://gear-addict-react.herokuapp.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.`. After reading the Django cors headers documentation, it was discovered that the original CORS_ORIGIN_WHITELIST variable (which was used to provide authorised URLs to the back end) had recently been updated to CORS_ALLOWED_ORIGINS. I suspected that this was what was causing the problem, so I updated the variable name and redeployed the project and the intermittent issue was resolved. 
 
 [Back to top](<#contents>)
 
@@ -262,7 +262,7 @@ Steps:
 
 Before continuing, please ensure you are signed up and logged into [Heroku](https://dashboard.heroku.com/).
 
-### Create Heroku App with Heroku PostGres
+### Create Heroku App with Heroku Postgres
 
 1. On the Heroku dashboard create a new app
 2. Add a name for the app (it must be unique)
@@ -275,7 +275,7 @@ Before continuing, please ensure you are signed up and logged into [Heroku](http
 3. Give the database a name (this is commonly the name of the project)
 4. Select the tiny turtle (free) plan
 5. The tags field can be left blank
-6. Select a data center region closest to your location
+6. Select a data centre region closest to your location
 7. Click review and then create instance to confirm the database settings
 8. Return to the dashboard and click on the database instance name
 9. Copy the ElephantSQL database URL using the copy icon. The URL starts with postgres://
@@ -361,14 +361,14 @@ CLIENT_ORIGIN_DEV = <IDE DEV URL>
 1. In the Heroku app dashboard - click the deploy tab and select GitHub as the deployment method
 2. Search for the GitHub repository name and click connect
 3. In the manual deploy section - choose the main / master branch
-4. Click deploy branch to deploy the project to heroku - you can also watch the process by viewing the build logs
-5. Once complete - open app to view
+4. Click 'deploy branch' to deploy the project to Heroku - you can also watch the process by viewing the build logs
+5. Once complete - open the app to view
 
 [Back to top](<#contents>)
 
 # Credits
 
-In this final section I would like to credit the various sources that were used throughout the Gear Addict project development.
+In this final section, I would like to credit the various sources that were used throughout the Gear Addict project development.
 
 [Back to top](<#contents>)
 
@@ -389,7 +389,7 @@ In this final section I would like to credit the various sources that were used 
 
 ## Code
 
-* The reset.py file in the root directory was provided by [Code Institute](https://codeinstitute.net/) tutors to assist with reseting and wiping the database in the event of an error or bug
+* The reset.py file in the root directory was provided by [Code Institute](https://codeinstitute.net/) tutors to assist with resetting and wiping the database in the event of an error or bug
 
 [Back to top](<#contents>)
 
@@ -397,7 +397,9 @@ In this final section I would like to credit the various sources that were used 
 
 Finally, I would like to say a big thank you to the [Code Institute](https://codeinstitute.net/) tutors for helping me debug my project! I would also like to thank my mentor [Martina](https://www.linkedin.com/in/martinaterlevic/), for her much appreciated guidance and advice, as well as the [Slack](https://slack.com/intl/en-gb/) community for their support and encouragement during this final challenging project! 
 
-Best wishes and happy coding,
+Best wishes and happy coding!
+
+Kind regards,
 
 Matthew Hobbs-Hurrell
 
