@@ -68,7 +68,9 @@ The Gear Addict application has been tested rigourously throughout the developme
 
 ## Validator Tests
 
-All Python code within the Gear Addict application has been run through the [Code Institute PEP8 Online Python Linter](https://pep8ci.herokuapp.com/). No errors were found.
+![Gear Addict Python Lint Tests](static/readme-images/gear-addict-python-lint-test.png)
+
+All Python code within the Gear Addict application has been run through the [Code Institute PEP8 Online Python Linter](https://pep8ci.herokuapp.com/). Minor indentation and whitespace errors were corrected. No known errors are now present.
 
 [Back to top](<#contents>)
 
