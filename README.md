@@ -219,6 +219,7 @@ Here you will find a complete list of all the technologies used to help create a
 * [GitHub](https://github.com/) - GitHub, Inc. is an Internet hosting service for software development and version control using Git.
 * [GitPod](https://www.gitpod.io/) - Gitpod is a cloud development environment for teams to efficiently and securely develop software.
 * [Heroku](https://dashboard.heroku.com/) - Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+* [Elephant SQL](https://www.elephantsql.com/) - Online configured and optimized PostgreSQL databases.
 
 [Back to top](<#contents>)
 
@@ -249,24 +250,155 @@ Here you will find a complete list of all the technologies used to help create a
 
 # Deployment
 
+This is a written guide on how to deploy a back-end Django REST API to [Heroku](https://dashboard.heroku.com/).
+
+Steps:
+1. **Create Heroku app**
+2. **Create external database**
+3. **Connect external database to Heroku**
+4. **Install and configure libraries**
+5. **Set environment variables**
+6. **Connect the project's Github repo to Heroku**
+
+Before continuing, please ensure you are signed up and logged into [Heroku](https://dashboard.heroku.com/).
+
+### Create Heroku App with Heroku PostGres
+
+1. On the Heroku dashboard create a new app
+2. Add a name for the app (it must be unique)
+3. Select a region closest to your location
+
+### Create external database
+
+1. Log into [Elephant SQL](https://www.elephantsql.com/) or sign up
+2. Click the "Create new instance" button to start the process of creating a new database
+3. Give the database a name (this is commonly the name of the project)
+4. Select the tiny turtle (free) plan
+5. The tags field can be left blank
+6. Select a data center region closest to your location
+7. Click review and then create instance to confirm the database settings
+8. Return to the dashboard and click on the database instance name
+9. Copy the ElephantSQL database URL using the copy icon. The URL starts with postgres://
+
+### Connect the external database to Heroku
+
+1. Open the app in Heroku
+2. Open the settings tab
+3. Click to reveal config vars
+4. Add a config var called DATABASE_URL and paste the ElephantSQL database URL into the value field
+
+### Install and configure libraries
+
+1. Open the project in a code editor
+2. In the terminal, use the command - `pip install dj_database_url` to install the DJ Database library
+3. In the app settings file add an import to the top of the file - `import dj_database_url`
+4. Separate the development and production databases by replacing the DATABASES variable with the following code
+```
+if 'DEV' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+```
+5. In the terminal, use the command - `pip install gunicorn` to install gunicorn
+6. Create a new file in the root directory called Procfile - this is for Heroku
+7. Add the following code to let Heroku know how to run the project -
+```
+release: python manage.py makemigrations && python manage.py migrate
+web: gunicorn gear_addict_api.wsgi
+```
+8. In the app settings.py file, set the allowed hosts to localhost and the deployed project URL
+```
+ALLOWED_HOSTS = ['localhost', os.environ.get('ALLOWED_HOST')]
+```
+9. In the terminal, use the command - `pip install django-cors-headers` to install CORS
+10. Add 'corsheaders' to the list of installed apps in the app settings.py file
+11. Add 'corsheaders.middleware.CorsMiddleware' to the top of the settings.py middleware list
+12. Add the following code to the app settings.py file beneath the middleware list, to allow network requests made to the server
+```
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
+```
+13. Add the following code to allow cookies - `CORS_ALLOW_CREDENTIALS = True`
+14. Add the cors allowed origins list and add the front end URL to allow network requests from that URL
+```
+CORS_ALLOWED_ORIGINS = [
+    '<FRONT END APP URL>',
+]
+```
+15. Add the following code to allow the front end and back end apps to be deployed to different platforms
+```
+JWT_AUTH_SAMESITE = 'None'
+```
+
+### Set environment variables
+
+1. In the env.py file add the following code with a secret key - `os.environ['SECRET_KEY'] = 'CreateRandomValue'`
+2. In the settings.py file replace the insecure secret key variable with an environment variable - `SECRET_KEY = os.environ.get('SECRET_KEY')`
+3. Replace the DEBUG variable with a conditional to be true only if in development - `DEBUG = 'DEV' in os.environ`
+4. In Heroku add new config vars with the cloudinary URL and secret key variables and values
+5. Add a disable collect static config var - `DISABLE_COLLECTSTATIC = 1`
+6. Add the following config vars to allow API access from dev and production URLs -
+```
+ALLOWED_HOST = <API URL.herokuapp.com>
+CLIENT_ORIGIN = <FRONT END URL.herokuapp.com>
+CLIENT_ORIGIN_DEV = <IDE DEV URL>
+```
+7. In the project update the requirements.txt file by running the following terminal command `pip freeze > requirements.txt`
+8. Git add, commit and push the code changes to the repository
+
+### Connect the projects GitHub repo to Heroku
+
+1. In the Heroku app dashboard - click the deploy tab and select GitHub as the deployment method
+2. Search for the GitHub repository name and click connect
+3. In the manual deploy section - choose the main / master branch
+4. Click deploy branch to deploy the project to heroku - you can also watch the process by viewing the build logs
+5. Once complete - open app to view
+
 [Back to top](<#contents>)
 
 # Credits
+
+In this final section I would like to credit the various sources that were used throughout the Gear Addict project development.
 
 [Back to top](<#contents>)
 
 ## Content
 
+* The [Code Institute](https://codeinstitute.net/) Advanced Front-end specialisation Django REST Framework guide was used as a basis to create and deploy this API. Inspiration was taken from the [Moments](https://moments-ci-react.herokuapp.com/) walkthrough project and expanded on with new custom models and functionality. 
+
 [Back to top](<#contents>)
 
 ## Media
+
+* The default rig placeholder image was sourced from [Shutterstock](https://www.shutterstock.com/)
+* The default gear placeholder image was sourced from [Unsplash](https://unsplash.com/)
+* The default profile placeholder image was sourced from [Unsplash](https://unsplash.com/)
+* The default profile header placeholder image was sourced from [Unsplash](https://unsplash.com/photos/MEL-jJnm7RQ)
 
 [Back to top](<#contents>)
 
 ## Code
 
+* The reset.py file in the root directory was provided by [Code Institute](https://codeinstitute.net/) tutors to assist with reseting and wiping the database in the event of an error or bug
+
 [Back to top](<#contents>)
 
 # Acknowledgements
+
+Finally, I would like to say a big thank you to the [Code Institute](https://codeinstitute.net/) tutors for helping me debug my project! I would also like to thank my mentor [Martina](https://www.linkedin.com/in/martinaterlevic/), for her much appreciated guidance and advice, as well as the [Slack](https://slack.com/intl/en-gb/) community for their support and encouragement during this final challenging project! 
+
+Best wishes and happy coding,
+
+Matthew Hobbs-Hurrell
 
 [Back to top](<#contents>)
