@@ -23,14 +23,13 @@ class ProfileSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         if user.is_authenticated:
             fanboy = Fan.objects.filter(
-               fan=user, idol=obj.owner 
+               fan=user, idol=obj.owner
             ).first()
             return fanboy.id if fanboy else None
         return None
-        
 
-    class Meta: 
-        model = Profile 
+    class Meta:
+        model = Profile
         fields = [
             'id', 'owner', 'created_at', 'updated_at',
             'name', 'bio', 'image', 'header_image',

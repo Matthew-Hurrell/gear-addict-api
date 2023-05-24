@@ -20,7 +20,7 @@ class Profile(models.Model):
         ('Violin', 'Violin'),
         ('Cello', 'Cello'),
         ('Trumpet', 'Trumpet'),
-        ('Clarinet','Clarinet'),
+        ('Clarinet', 'Clarinet'),
         ('Accordion', 'Accordion'),
         ('Xylophone', 'Xylophone'),
         ('Trombone', 'Trombone'),
@@ -136,7 +136,7 @@ class Profile(models.Model):
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(owner=instance)    
+        Profile.objects.create(owner=instance)
+
 
 post_save.connect(create_profile, sender=User)
-

@@ -12,10 +12,10 @@ class ProfileList(generics.ListAPIView):
     No create view as profile creation is handled by django signals.
     """
     queryset = Profile.objects.annotate(
-        rigs_count = Count('owner__rig', distinct=True),
-        gear_count = Count('owner__gear', distinct=True),
-        fans_count = Count('owner__idolguy', distinct=True),
-        idols_count = Count('owner__fanboy', distinct=True)
+        rigs_count=Count('owner__rig', distinct=True),
+        gear_count=Count('owner__gear', distinct=True),
+        fans_count=Count('owner__idolguy', distinct=True),
+        idols_count=Count('owner__fanboy', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
     filter_backends = [
@@ -37,15 +37,16 @@ class ProfileList(generics.ListAPIView):
         'owner__idolguy__created_at',
     ]
 
+
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Retrieve or update a profile if you're the owner.
     """
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
-        rigs_count = Count('owner__rig', distinct=True),
-        gear_count = Count('owner__gear', distinct=True),
-        fans_count = Count('owner__idolguy', distinct=True),
-        idols_count = Count('owner__fanboy', distinct=True)
+        rigs_count=Count('owner__rig', distinct=True),
+        gear_count=Count('owner__gear', distinct=True),
+        fans_count=Count('owner__idolguy', distinct=True),
+        idols_count=Count('owner__fanboy', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer

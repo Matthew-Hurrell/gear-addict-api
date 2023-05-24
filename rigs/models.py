@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Rig(models.Model): 
+class Rig(models.Model):
     """
     Rig model, related to 'owner', i.e. a User instance.
     Default image set so that we can always reference image.url.
@@ -98,8 +98,11 @@ class Rig(models.Model):
     )
     description = models.TextField(blank=True)
     gear_list = models.TextField(blank=True)
-    featured_image = models.ImageField(upload_to='images/', default='../gear_addict_rig_placeholder_e0o12b',
-    blank=True)
+    featured_image = models.ImageField(
+        upload_to='images/',
+        default='../gear_addict_rig_placeholder_e0o12b',
+        blank=True
+    )
     image_2 = models.ImageField(upload_to='images/', blank=True)
     image_3 = models.ImageField(upload_to='images/', blank=True)
     image_4 = models.ImageField(upload_to='images/', blank=True)
@@ -132,5 +135,6 @@ class Rig(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        
     def __str__(self):
         return f'{self.id} {self.name}'

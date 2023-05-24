@@ -9,7 +9,7 @@ class CommentList(generics.ListCreateAPIView):
     """
     List all comments
     Create a new comment if authenticated
-    Associate the current logged in user with the comment 
+    Associate the current logged in user with the comment
     """
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

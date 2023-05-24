@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Gear(models.Model): 
+class Gear(models.Model):
     """
     Gear model, related to 'owner', i.e. a User instance.
     Default image set so that we can always reference image.url.

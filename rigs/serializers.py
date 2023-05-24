@@ -55,7 +55,6 @@ class RigSerializer(serializers.ModelSerializer):
             return star.id if star else None
         return None
 
-
     class Meta:
         model = Rig
         fields = [
@@ -64,6 +63,6 @@ class RigSerializer(serializers.ModelSerializer):
             'name', 'category', 'description', 'gear_list',
             'featured_image', 'image_2', 'image_3', 'image_4',
             'attribute_1', 'attribute_2', 'budget', 'genre_1',
-            'genre_2', 'like_id', 'star_id', 'comments_count', 
+            'genre_2', 'like_id', 'star_id', 'comments_count',
             'likes_count', 'stars_count', 'featured'
         ]

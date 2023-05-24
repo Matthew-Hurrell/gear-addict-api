@@ -1,4 +1,5 @@
-# place in root directory of django project, i.e the same level as the manage.py file
+# place in root directory of django project, i.e the same
+# level as the manage.py file
 import os
 import shutil
 
@@ -35,7 +36,9 @@ class ResetMigrations:
                     for file in files:
                         # only f its not the __init__ file
                         if file != '__init__.py':
-                            os.unlink(f'{self.cwd}/{d}/{self.migrations}/{file}')
+                            os.unlink(
+                                f'{self.cwd}/{d}/{self.migrations}/{file}'
+                            )
 
     def make_migrations(self):
         os.system('python3 manage.py makemigrations')
