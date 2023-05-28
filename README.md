@@ -181,6 +181,40 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 
 ## Automated Tests
 
+Automated tests were created and run on the Gear Addict API to test basic CRUD functionality and user permissions for the Gear and Rig models. Details of the tests and links to test files can be found below.
+
+| Status | **Rig Tests**
+|:-------:|:--------|
+| &check; | Can list rigs
+| &check; | Logged in user can create rig
+| &check; | Logged out user cannot create rig
+| &check; | User can retrieve rig using valid id
+| &check; | User cannot retrieve rig using invalid id
+| &check; | Logged in user can update own rig
+| &check; | Users cannot update rig they don't own
+| &check; | Non logged in user cannot update rig 
+| &check; | User can delete own rig
+| &check; | User cannot delete rig they don't own
+| &check; | Non logged in user cannot delete rig
+
+| Status | **Gear Tests**
+|:-------:|:--------|
+| &check; | Can list gear
+| &check; | Logged in user can create gear
+| &check; | Logged out user cannot create gear
+| &check; | User can retrieve gear using valid id
+| &check; | User cannot retrieve gear using invalid id
+| &check; | Logged in user can update own gear
+| &check; | Users cannot update gear they don't own
+| &check; | Non logged in user cannot update gear
+| &check; | User can delete own gear
+| &check; | User cannot delete gear they don't own
+| &check; | Non logged in user cannot delete gear
+
+[Click here to view the rigs tests file](https://github.com/Matthew-Hurrell/gear-addict-api/blob/main/rigs/tests.py)
+
+[Click here to view the gear tests file](https://github.com/Matthew-Hurrell/gear-addict-api/blob/main/gear/tests.py)
+
 [Back to top](<#contents>)
 
 ## Bugs
