@@ -1,6 +1,6 @@
 # **Gear Addict - API**
 
-Gear Addict is an online application that allows users to add and categorise their music gear, and also share details about their live rigs with the community. Users can interact with other users by becoming a fan, as well as liking, commenting and saving rigs.
+Gear Addict is an online application that allows users to add and categorise their music gear and share details about their live rigs with the community. Users can interact with other users by becoming a fan, as well as liking, commenting and saving rigs.
 
 This project was built as the final portfolio submission for the [Code Institute](https://codeinstitute.net/) Higher National Diploma in Full Stack Software Development. 
 
@@ -42,7 +42,7 @@ Link to the front end repository - [Gear Addict Front End Repo](https://github.c
 
 ![Gear Addict User Story Example](static/readme-images/gear-addict-user-stories.png)
 
-In terms of project management, user stories are an integral part of the software development creative process. There is a total of sixty user stories for the Gear Addict project. Before development began, all user stories began as epics. They were then refined into user stories, which were then again split into acceptance criteria and tasks. Each user story was then assigned a story points number in relation to its difficulty in comparison to the other user stories. Finally, each user story was given a label to display its priority. User stories were then sorted into weekly iterations and added to the Gear Addict Project Board to aid with organisation. As development progressed, user stories were closed and moved into the done column on the Gear Addict project board. Each iteration was carefully planned to not have more than 60% must-have user stories. 
+In terms of project management, user stories are an integral part of the software development creative process. There is a total of sixty-one user stories for the Gear Addict project. Before development began, all user stories began as epics. They were then refined into user stories, which were then again split into acceptance criteria and tasks. Each user story was then assigned a story points number in relation to its difficulty in comparison to the other user stories. Finally, each user story was given a label to display its priority. User stories were then sorted into weekly iterations and added to the Gear Addict Project Board to aid with organisation. As development progressed, user stories were closed and moved into the done column on the Gear Addict project board. Each iteration was carefully planned to not have more than 60% must-have user stories. 
 
 A full list of user stories can be found in a separate file here - [Gear Addict User Stories](https://github.com/Matthew-Hurrell/gear-addict/blob/main/readme/userstories.md)
 
@@ -95,6 +95,8 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 | &check; | Pagination functioning
 | &check; | Count fields functionality working correctly
 
+[Back to top](<#contents>)
+
 | Status | **Gear**
 |:-------:|:--------|
 | &check; | Correct list URL path
@@ -110,6 +112,8 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 | &check; | Default image URL correct
 | &check; | Pagination functioning
 
+[Back to top](<#contents>)
+
 | Status | **Profiles**
 |:-------:|:--------|
 | &check; | User profile automatically created on sign up
@@ -123,6 +127,8 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 | &check; | Default image URLs correct
 | &check; | Pagination functioning
 | &check; | Count fields functionality working correctly
+
+[Back to top](<#contents>)
 
 | Status | **Comments**
 |:-------:|:--------|
@@ -138,6 +144,8 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 | &check; | Pagination functioning
 | &check; | Correct rig id 
 
+[Back to top](<#contents>)
+
 | Status | **Fans**
 |:-------:|:--------|
 | &check; | Correct list URL path
@@ -151,6 +159,8 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 | &check; | Correct fan name
 | &check; | Correct idol id 
 
+[Back to top](<#contents>)
+
 | Status | **Likes**
 |:-------:|:--------|
 | &check; | Correct list URL path
@@ -163,6 +173,8 @@ Here you will find a comprehensive list of all the manual tests that were carrie
 | &check; | Pagination functioning
 | &check; | Correct rig id 
 | &check; | Correct owner 
+
+[Back to top](<#contents>)
 
 | Status | **Stars**
 |:-------:|:--------|
@@ -196,6 +208,8 @@ Automated tests were created and run on the Gear Addict API to test basic CRUD f
 | &check; | User can delete own rig
 | &check; | User cannot delete rig they don't own
 | &check; | Non logged in user cannot delete rig
+
+[Back to top](<#contents>)
 
 | Status | **Gear Tests**
 |:-------:|:--------|
@@ -296,11 +310,15 @@ Steps:
 
 Before continuing, please ensure you are signed up and logged into [Heroku](https://dashboard.heroku.com/).
 
+[Back to top](<#contents>)
+
 ### Create Heroku App with Heroku Postgres
 
 1. On the Heroku dashboard create a new app
 2. Add a name for the app (it must be unique)
 3. Select a region closest to your location
+
+[Back to top](<#contents>)
 
 ### Create external database
 
@@ -314,12 +332,16 @@ Before continuing, please ensure you are signed up and logged into [Heroku](http
 8. Return to the dashboard and click on the database instance name
 9. Copy the ElephantSQL database URL using the copy icon. The URL starts with postgres://
 
+[Back to top](<#contents>)
+
 ### Connect the external database to Heroku
 
 1. Open the app in Heroku
 2. Open the settings tab
 3. Click to reveal config vars
 4. Add a config var called DATABASE_URL and paste the ElephantSQL database URL into the value field
+
+[Back to top](<#contents>)
 
 ### Install and configure libraries
 
@@ -374,6 +396,8 @@ CORS_ALLOWED_ORIGINS = [
 JWT_AUTH_SAMESITE = 'None'
 ```
 
+[Back to top](<#contents>)
+
 ### Set environment variables
 
 1. In the env.py file add the following code with a secret key - `os.environ['SECRET_KEY'] = 'CreateRandomValue'`
@@ -389,6 +413,8 @@ CLIENT_ORIGIN_DEV = <IDE DEV URL>
 ```
 7. In the project update the requirements.txt file by running the following terminal command `pip freeze > requirements.txt`
 8. Git add, commit and push the code changes to the repository
+
+[Back to top](<#contents>)
 
 ### Connect the projects GitHub repo to Heroku
 
