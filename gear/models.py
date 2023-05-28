@@ -71,7 +71,7 @@ class Gear(models.Model):
         choices=condition_choices,
         blank=True
     )
-    value = models.PositiveIntegerField()
+    value = models.PositiveIntegerField(blank=True)
     location = models.CharField(max_length=255, blank=True)
     description = models.TextField(blank=True)
     image = models.ImageField(
